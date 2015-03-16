@@ -5,7 +5,10 @@ namespace Blogger\BlogBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 
 class BlogController extends FOSRestController
-{
+{	
+	/**
+	 * @View(templateVar='user')
+	 */
     public function getPostAction($name)
     {
         $blogPost = array(
