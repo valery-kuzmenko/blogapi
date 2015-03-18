@@ -80,16 +80,15 @@ fos_rest:
         #???
         mime_types:
             json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
-        #make possible to return view object from controller instead of using handleView method, uses fos_rest.view_handler service
-        # if use 'true' rendering will be delegated to SensioFrameworkExtraBundle.
-		#        we need to disable view annotations, to fos_rest bundle begin to handle by annotations
-        #			sensio_framework_extra:
-		#				view:    { annotations: false }
-        
-		#         @View(statusCode=204)
-		#         @View(serializerGroups={"group1", "group2"})
-		#         @View(serializerEnableMaxDepthChecks=true)   
-        #		  @View(populateDefaultVars=false) - remove  request attributes  from view
+#make possible to return view object from controller instead of using handleView method, uses fos_rest.view_handler service
+#if use 'true' rendering will be delegated to SensioFrameworkExtraBundle.
+#we need to disable view annotations, to fos_rest bundle begin to handle by annotations
+#sensio_framework_extra:
+#view:    { annotations: false }
+#@View(statusCode=204)
+#@View(serializerGroups={"group1", "group2"})
+#@View(serializerEnableMaxDepthChecks=true)   
+#@View(populateDefaultVars=false) - remove  request attributes  from view
         view_response_listener: 'force'
         #???
         formats:
@@ -115,4 +114,8 @@ fos_rest:
     access_denied_listener:
         json: true
     # transforms the request content in the request
-    body_listener: true
+    body_listener: 
+        array_normalizer: fos_rest.normalizer.camel_keys 
+
+sensio_framework_extra:
+    view: {annotations : false}

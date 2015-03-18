@@ -7,9 +7,9 @@ use FOS\RestBundle\Controller\FOSRestController;
 class BlogController extends FOSRestController
 {	
 	/**
-	 * @View(templateVar='user')
+	 * 
 	 */
-    public function getPostAction($name)
+    public function getAction($id)
     {
         $blogPost = array(
             'title' => 'Funny Cats',
@@ -21,8 +21,6 @@ class BlogController extends FOSRestController
             'keywords' => array('cats', 'pets', 'animals')
         );
         
-        $view = $this->view($blogPost, 200)->setTemplate("BloggerBlogBundle:getPost.html.twig")->setTemplateVar('posts');
-        
-        return $this->handleView($view);
+        return $this->get('fos_rest.view_handler')->handle($this->view($blogPost, 200));
     }
 }

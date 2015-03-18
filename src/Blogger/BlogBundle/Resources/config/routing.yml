@@ -1,3 +1,7 @@
-blogger_blog_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: BloggerBlogBundle:Default:index }
+blogger_get_blog:
+    path:     /posts/{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:get }
+    requirements:
+        _method: GET
+        id: "\d+"
+            

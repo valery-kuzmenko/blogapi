@@ -2,3 +2,9 @@ services:
 #    blogger_blog.example:
 #        class: Blogger\BlogBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    blogger_blog.json_handler:
+        class: Blogger\BlogBundle\View\JSONViewHandler
+    blogger_blog.view_handler:
+        parent: fos_rest.view_handler.default
+        calls: 
+            - ['registerHandler', ['json', [@blogger_blog.json_handler, 'createResponse']]]
