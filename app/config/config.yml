@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @BloggerBlogBundle/Resources/config/services.yml}
 
 framework:
     #esi:             ~
@@ -116,6 +117,9 @@ fos_rest:
     # transforms the request content in the request
     body_listener: 
         array_normalizer: fos_rest.normalizer.camel_keys 
+    
+    service:
+        view_handler: blogger_blog.view_handler        
 
 sensio_framework_extra:
     view: {annotations : false}

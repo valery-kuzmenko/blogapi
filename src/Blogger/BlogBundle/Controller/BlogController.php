@@ -21,6 +21,6 @@ class BlogController extends FOSRestController
             'keywords' => array('cats', 'pets', 'animals')
         );
         
-        return $this->get('fos_rest.view_handler')->handle($this->view($blogPost, 200));
+		return $this->view($blogPost, 200);
     }
 }

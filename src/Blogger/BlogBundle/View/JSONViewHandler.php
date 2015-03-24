@@ -1,7 +1,7 @@
 <?php
 namespace Blogger\BlogBundle\View;
 
-use FOS\RestBundle\View, 
+use FOS\RestBundle\View\View, 
 	FOS\RestBundle\View\ViewHandler,
 	Symfony\Component\HttpFoundation\Request,
 	Symfony\Component\HttpFoundation\Response;
@@ -12,8 +12,8 @@ class JSONViewHandler{
   * @param ViewHandler $ViewHandler
   */
   public function createResponse(ViewHandler $handler, View $view, Request $request, $format) {
-	echo '<pre>'; print_r(array($view));  echo '</pre>';
+	$content = json_encode(array('status' => $view->getStatusCode(), 'data' => $view->getData()));
 	
-	return new Response($view, 200, $view->getHeaders());
+	return new Response($content, 200, $view->getHeaders());
   }
 }
