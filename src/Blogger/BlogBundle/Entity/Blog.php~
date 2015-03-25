@@ -1,0 +1,62 @@
+<?php
+
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="blog")
+ */
+class Blog{
+  
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  protected $id;
+  
+  /**
+   * @ORM\Column(type="string")
+   */
+  protected $title;
+  
+  /**
+   * @ORM\Column(type="string", length=100)
+   */
+  protected $author;
+  
+  /**
+   * @ORM\Column(type="text")
+   */
+  protected $content;
+  
+  /**
+   * @ORM\Column(type="text")
+   */
+  protected $tags;
+  
+  /**
+   * @ORM\Column(type="text")
+   */
+  protected $keywords;
+  
+  /**
+   * @ORM\Column(type="string", length=50)
+   */
+  protected $image;
+  
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  protected $created;
+  
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  protected $updated;
+  
+  protected $comments;
+
+}
