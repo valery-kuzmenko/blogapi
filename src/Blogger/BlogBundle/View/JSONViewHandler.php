@@ -12,8 +12,17 @@ class JSONViewHandler{
   * @param ViewHandler $ViewHandler
   */
   public function createResponse(ViewHandler $handler, View $view, Request $request, $format) {
-	$content = json_encode(array('status' => $view->getStatusCode(), 'data' => $view->getData()));
+      
+//      try{
+//          $content = json_encode(array('status' => 200, 'data' => $view->getData()));
+//          
+//          return new Response($content, 200, $view->getHeaders());
+//      }catch(\Exception $e){
+//          
+//      }
+      
+      
 	
-	return new Response($content, 200, $view->getHeaders());
+	
   }
 }
