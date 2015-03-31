@@ -8,3 +8,14 @@ services:
         parent: fos_rest.view_handler.default
         calls: 
             - ['registerHandler', ['json', [@blogger_blog.json_handler, 'createResponse']]]
+    #entity managers
+    blogger_blog.blog_manager:
+        class: Blogger\BlogBundle\Services\Blog
+        arguments:
+            - @blogger_blog.blog_repository
+    
+    blogger_blog.blog_repository:
+        class: Blogger\BlogBundle\Repository\BlogRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments: [ BloggerBlogBundle:Blog ]

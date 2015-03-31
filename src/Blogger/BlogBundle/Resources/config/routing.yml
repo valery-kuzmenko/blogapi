@@ -1,7 +1,3 @@
-blogger_get_blog:
-    path:     /posts/{id}
-    defaults: { _controller: BloggerBlogBundle:Blog:get }
-    requirements:
-        _method: GET
-        id: "\d+"
-            
+blogs:
+    type: rest
+    resource: Blogger\BlogBundle\Controller\BlogController
