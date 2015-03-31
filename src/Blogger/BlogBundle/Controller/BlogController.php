@@ -7,7 +7,7 @@ use FOS\RestBundle\Controller\FOSRestController,
 
 class BlogController extends FOSRestController {
 
-  public function getBlogsAction($id) {
+  public function getBlogAction($id) {
 	$blog = $this->get('blogger_blog.blog_manager')->getBlogPostById($id);
 	
 	if (!$blog) {
@@ -15,5 +15,9 @@ class BlogController extends FOSRestController {
 	}
 
 	return $this->view($blog);
+  }
+  
+  public function getBlogsAction(){
+      return $this->get('blogger_blog.blog_manager')->getBlogs();
   }
 }

@@ -18,5 +18,8 @@ class Blog{
 	return $this->repository->find($id);
   }
   
+  public function getBlogs(){
+      return $this->repository->findAll();
+  }
   
 }
