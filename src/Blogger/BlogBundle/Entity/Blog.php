@@ -3,6 +3,7 @@
 namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\BlogRepository")
@@ -18,17 +19,22 @@ class Blog{
   protected $id;
   
   /**
-   * @ORM\Column(type="string")
+   * @ORM\Column(type="string", length=50)
+   * @Assert\NotBlank()
+   * @Assert\Length(max=50)
    */
   protected $title;
   
   /**
-   * @ORM\Column(type="string", length=100)
+   * @ORM\Column(type="string", length=50)
+   * @Assert\NotBlank()
+   * @Assert\Length(max=50)
    */
   protected $author;
   
   /**
    * @ORM\Column(type="text")
+   * @Assert\NotBlank()
    */
   protected $content;
   
@@ -43,6 +49,7 @@ class Blog{
   protected $keywords;
   
   /**
+   * @Assert\NotBlank()
    * @ORM\Column(type="string", length=50)
    */
   protected $image;

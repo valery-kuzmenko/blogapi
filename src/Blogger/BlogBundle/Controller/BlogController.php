@@ -4,6 +4,7 @@ namespace Blogger\BlogBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController,
 	Blogger\BlogBundle\Services\Blog,
+	Blogger\BlogBundle\Form\NewBlog,
 	Symfony\Component\HttpFoundation\Response,
 	Symfony\Component\HttpFoundation\Request;
 
@@ -28,10 +29,11 @@ class BlogController extends MainController {
   }
 
   public function postBlogsAction(Request $request) {
-	$this->processForm($request, 'newBlog', success function() {
+	$this->processForm($request, new NewBlog(),  function() {
 	  
-	}, error function() {
+	},  function() {
 	  
 	});
+	
   }
 }
