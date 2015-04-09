@@ -49,7 +49,6 @@ class Blog{
   protected $keywords;
   
   /**
-   * @Assert\NotBlank()
    * @ORM\Column(type="string", length=50)
    */
   protected $image;
