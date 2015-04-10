@@ -75,6 +75,9 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_rest:
+    body_converter:
+        enabled: true
+        
     routing_loader:
         default_format: json
         include_format: false
@@ -86,15 +89,22 @@ fos_rest:
             json: true
         exception_wrapper_handler:  null
 
-    format_listener: false
+    param_fetcher_listener: true
+    
+    body_listener: 
+        decoders:
+            json: fos_rest.decoder.jsontoform
+    
+    format_listener: true
+    
     access_denied_listener:
         json: true
-        
-    body_listener: true
-    
+           
     service:
-        view_handler: blogger_blog.view_handler
-        exception_handler:    fos_rest.view.exception_wrapper_handler
+        #view_handler: blogger_blog.view_handler
+        exception_handler: fos_rest.view.exception_wrapper_handler
 
 sensio_framework_extra:
-    view: {annotations : false}
+    request: {converters : true}
+    view: 
+        annotations : false

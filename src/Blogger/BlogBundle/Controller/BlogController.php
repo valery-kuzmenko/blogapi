@@ -17,7 +17,7 @@ class BlogController extends MainController {
 	  throw $this->createNotFoundException('This post is not exist!');
 	}
 
-	return $this->view($blog);
+	return $blog;
   }
 
   public function getBlogsAction() {
@@ -25,15 +25,10 @@ class BlogController extends MainController {
   }
 
   public function optionsBlogsAction() {
-	
+
   }
 
   public function postBlogsAction(Request $request) {
-	$this->processForm($request, new NewBlog(),  function() {
-	  
-	},  function() {
-	  
-	});
-	
+	return $this->processForm($request, new NewBlog());
   }
 }

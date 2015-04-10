@@ -5,6 +5,10 @@ namespace Blogger\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Expose;
+
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\BlogRepository")
  * @ORM\Table(name="blog")
@@ -22,6 +26,7 @@ class Blog{
    * @ORM\Column(type="string", length=50)
    * @Assert\NotBlank()
    * @Assert\Length(max=50)
+   * @Type("string")
    */
   protected $title;
   
@@ -29,12 +34,14 @@ class Blog{
    * @ORM\Column(type="string", length=50)
    * @Assert\NotBlank()
    * @Assert\Length(max=50)
+   * @Type("string")
    */
   protected $author;
   
   /**
    * @ORM\Column(type="text")
    * @Assert\NotBlank()
+   * @Type("string")
    */
   protected $content;
   
@@ -49,7 +56,6 @@ class Blog{
   protected $keywords;
   
   /**
-   * @Assert\NotBlank()
    * @ORM\Column(type="string", length=50)
    */
   protected $image;

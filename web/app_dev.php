@@ -9,6 +9,28 @@ use Symfony\Component\Debug\Debug;
 
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
+function myDump($p, $type = false, $add_write = false){
+	if ($type != false) {
+		$path = $_SERVER['DOCUMENT_ROOT'] . '/errors';
+		if (!file_exists($path))
+			mkdir($path, 0777);
+		@chmod($path, 0777);
+                $type = 'w';
+                if($add_write)
+                    $type = 'a';
+                
+		$fp = fopen($path . '/error.txt', $type);
+		fwrite($fp, print_r($p, true));
+		fclose($fp);
+		@chmod($path . '/error.txt', 0777);
+	} else {
+		echo '<pre>';
+		print_r($p);
+		echo '</pre>';
+	}
+	return false;
+}
+
 
 $loader = require_once __DIR__.'/../app/autoload.php';
 Debug::enable();
