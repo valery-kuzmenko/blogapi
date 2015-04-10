@@ -90,11 +90,7 @@ fos_rest:
         exception_wrapper_handler:  null
 
     param_fetcher_listener: true
-    
-    body_listener: 
-        decoders:
-            json: fos_rest.decoder.jsontoform
-    
+    body_listener: true
     format_listener: true
     
     access_denied_listener:
