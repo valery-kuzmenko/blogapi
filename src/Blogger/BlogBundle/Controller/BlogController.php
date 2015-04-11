@@ -8,6 +8,8 @@ use FOS\RestBundle\Controller\FOSRestController,
 	Symfony\Component\HttpFoundation\Response,
 	Symfony\Component\HttpFoundation\Request;
 
+use Blogger\BlogBundle\Entity\Blog as BlogEntity;
+
 class BlogController extends MainController {
 
   public function getBlogAction($id) {
@@ -29,6 +31,9 @@ class BlogController extends MainController {
   }
 
   public function postBlogsAction(Request $request) {
-	return $this->processForm($request, new NewBlog());
+	$blogPost = new BlogEntity();
+	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($blogPost){
+	  $blogPost->save();
+	});
   }
 }

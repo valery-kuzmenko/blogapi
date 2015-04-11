@@ -8,10 +8,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\BlogRepository")
  * @ORM\Table(name="blog")
+ * @ExclusionPolicy("all")
  */
 class Blog{
   
@@ -19,6 +21,7 @@ class Blog{
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
+   * @Expose
    */
   protected $id;
   
@@ -27,14 +30,14 @@ class Blog{
    * @Assert\NotBlank()
    * @Assert\Length(max=50)
    * @Type("string")
+   * @Expose
    */
   protected $title;
   
   /**
    * @ORM\Column(type="string", length=50)
-   * @Assert\NotBlank()
-   * @Assert\Length(max=50)
    * @Type("string")
+   * @Expose
    */
   protected $author;
   
@@ -42,16 +45,19 @@ class Blog{
    * @ORM\Column(type="text")
    * @Assert\NotBlank()
    * @Type("string")
+   * @Expose
    */
   protected $content;
   
   /**
    * @ORM\Column(type="text")
+   * @Expose
    */
   protected $tags;
   
   /**
    * @ORM\Column(type="text")
+   * @Expose
    */
   protected $keywords;
   
@@ -71,8 +77,12 @@ class Blog{
   protected $updated;
   
   protected $comments;
-
-
+  /**
+   * @ORM\Column(type="string", length=100) 
+   */
+  protected $permalink;
+  
+  
     /**
      * Get id
      *
@@ -265,5 +275,28 @@ class Blog{
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set permalink
+     *
+     * @param string $permalink
+     * @return Blog
+     */
+    public function setPermalink($permalink)
+    {
+        $this->permalink = $permalink;
+
+        return $this;
+    }
+
+    /**
+     * Get permalink
+     *
+     * @return string 
+     */
+    public function getPermalink()
+    {
+        return $this->permalink;
     }
 }

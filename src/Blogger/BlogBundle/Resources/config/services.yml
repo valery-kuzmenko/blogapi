@@ -19,3 +19,8 @@ services:
         factory_service: doctrine
         factory_method: getRepository
         arguments: [ BloggerBlogBundle:Blog ]
+    
+    blogger_blog.kernel.listener.json_request_transformer:
+        class: Blogger\BlogBundle\EventListener\JsonRequestTransformer
+        tags: 
+            - {name : kernel.event_listener, event: kernel.request, method: onKernelRequest}

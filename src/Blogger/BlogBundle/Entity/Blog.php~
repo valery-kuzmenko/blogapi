@@ -3,10 +3,17 @@
 namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\BlogRepository")
  * @ORM\Table(name="blog")
+ * @ExclusionPolicy("all")
  */
 class Blog{
   
@@ -18,17 +25,26 @@ class Blog{
   protected $id;
   
   /**
-   * @ORM\Column(type="string")
+   * @ORM\Column(type="string", length=50)
+   * @Assert\NotBlank()
+   * @Assert\Length(max=50)
+   * @Type("string")
+   * @Expose
    */
   protected $title;
   
   /**
-   * @ORM\Column(type="string", length=100)
+   * @ORM\Column(type="string", length=50)
+   * @Type("string")
+   * @Expose
    */
   protected $author;
   
   /**
    * @ORM\Column(type="text")
+   * @Assert\NotBlank()
+   * @Type("string")
+   * @Expose
    */
   protected $content;
   
@@ -58,8 +74,12 @@ class Blog{
   protected $updated;
   
   protected $comments;
-
-
+  /**
+   * @ORM\Column(type="string", length=100) 
+   */
+  protected $permalink;
+  
+  
     /**
      * Get id
      *
