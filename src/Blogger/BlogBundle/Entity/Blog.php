@@ -42,7 +42,7 @@ class Blog{
   protected $author;
   
   /**
-   * @ORM\Column(type="text")
+   * @ORM\Column(type="text", nullable=true)
    * @Assert\NotBlank()
    * @Type("string")
    * @Expose

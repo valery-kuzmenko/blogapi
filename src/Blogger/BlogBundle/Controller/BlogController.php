@@ -13,7 +13,7 @@ use Blogger\BlogBundle\Entity\Blog as BlogEntity;
 class BlogController extends MainController {
 
   public function getBlogAction($id) {
-	$blog = $this->get('blogger_blog.blog_manager')->getBlogPostById($id);
+	$blog = $this->get('blogger_blog.blog_manager')->get($id);
 
 	if (!$blog) {
 	  throw $this->createNotFoundException('This post is not exist!');
@@ -23,7 +23,7 @@ class BlogController extends MainController {
   }
 
   public function getBlogsAction() {
-	return $this->get('blogger_blog.blog_manager')->getBlogs();
+	return $this->get('blogger_blog.blog_manager')->all();
   }
 
   public function optionsBlogsAction() {
@@ -32,8 +32,9 @@ class BlogController extends MainController {
 
   public function postBlogsAction(Request $request) {
 	$blogPost = new BlogEntity();
-	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($blogPost){
-	  $blogPost->save();
+	$self = $this;
+	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
+		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
 	});
   }
 }

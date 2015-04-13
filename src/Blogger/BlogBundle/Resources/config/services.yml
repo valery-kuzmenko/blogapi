@@ -10,9 +10,10 @@ services:
             - ['registerHandler', ['json', [@blogger_blog.json_handler, 'createResponse']]]
     #entity managers
     blogger_blog.blog_manager:
-        class: Blogger\BlogBundle\Services\Blog
-        arguments:
-            - @blogger_blog.blog_repository
+        class: Blogger\BlogBundle\Services\BlogManager
+        calls:
+            - ['setClass', ['BloggerBlogBundle:Blog']]
+            - ['setEntityManager' , [@doctrine.orm.entity_manager]]
     
     blogger_blog.blog_repository:
         class: Blogger\BlogBundle\Repository\BlogRepository

@@ -4,16 +4,9 @@ namespace Blogger\BlogBundle\Services;
 
 use Blogger\BlogBundle\Repository\BlogRepository;
 
-class Blog{
-  /**
-   * @var Blogger\BlogBundle\Repository\BlogRepository
-   */
-  public $repository;
-  
-  public function __construct(BlogRepository $blogRepository) {
-	$this->repository = $blogRepository;
-  }
-  
+class BlogManager extends CommonEntityManager {
+ 
+ 
   public function getBlogPostById($id){
 	return $this->repository->find($id);
   }
@@ -21,5 +14,4 @@ class Blog{
   public function getBlogs(){
       return $this->repository->findAll();
   }
-  
 }
