@@ -1,0 +1,63 @@
+<?php
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+
+/**
+ * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CommentRepository")
+ * @ORM\Table(name="comment")
+ * @ExclusionPolicy("all")
+ */
+class Comment{
+  
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  protected $id;
+  
+  /**
+   * @ORM\Column(type="string")
+   * @Assert\NotBlank()
+   * @Assert\Length(max=50)
+   * @Expose
+   */
+  protected $user;
+  
+  /**
+   * @ORM\Column(type="text")
+   * @Assert\NotBlank()
+   * @Expose
+   */
+  protected $comment;
+  
+  /**
+   * @ORM\Column(type="boolean")
+   */
+  protected $approved;
+  
+  /**
+   * @ORM\ManyToOne(targetEntity="Blog", inversedBy="comments")
+   * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
+   */
+  protected $blog;
+  
+  /**
+   * @ORM\Column(type="date")
+   * @Expose
+   */
+  protected $created;
+  
+  /**
+   * @ORM\Column(type="date")
+   */
+  protected $updated;
+  
+  
+};

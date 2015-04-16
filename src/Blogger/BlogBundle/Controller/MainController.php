@@ -18,8 +18,8 @@ class MainController extends FOSRestController {
    * @param int $sucessCode http code that will be returned in case of success message
    * @param callable $successCallback custom success function
    */
-  public function processForm(Request $request, AbstractType $formObject, $object = NULL, $sucessCode = 200, $successCallback = NULL) {
-	$form = $this->createForm($formObject, $object);
+  public function processForm(Request $request, AbstractType $formObject, $object = NULL, $sucessCode = 200, $successCallback = NULL, $options = array()) {
+	$form = $this->createForm($formObject, $object, $options);
 	$form->handleRequest($request);	
 	
 	if ($form->isValid()) {

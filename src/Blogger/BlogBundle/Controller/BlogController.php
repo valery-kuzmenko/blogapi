@@ -2,16 +2,21 @@
 
 namespace Blogger\BlogBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController,
-	Blogger\BlogBundle\Services\Blog,
+use Symfony\Component\HttpFoundation\Response,
+	Symfony\Component\HttpFoundation\Request,
+	Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
+	FOS\RestBundle\Controller\FOSRestController,
+	FOS\RestBundle\Controller\Annotations\Route,
+	Blogger\BlogBundle\Services\BlogManager,
 	Blogger\BlogBundle\Form\NewBlog,
-	Symfony\Component\HttpFoundation\Response,
-	Symfony\Component\HttpFoundation\Request;
-
-use Blogger\BlogBundle\Entity\Blog as BlogEntity;
+	Blogger\BlogBundle\Entity\Blog;
 
 class BlogController extends MainController {
 
+  public function getBlogsAction() {
+	return $this->get('blogger_blog.blog_manager')->all();
+  }
+  
   public function getBlogAction($id) {
 	$blog = $this->get('blogger_blog.blog_manager')->get($id);
 
@@ -22,19 +27,31 @@ class BlogController extends MainController {
 	return $blog;
   }
 
-  public function getBlogsAction() {
-	return $this->get('blogger_blog.blog_manager')->all();
-  }
-
-  public function optionsBlogsAction() {
-
-  }
-
   public function postBlogsAction(Request $request) {
-	$blogPost = new BlogEntity();
+	$blogPost = new Blog();
 	$self = $this;
 	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
 		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
 	});
   }
+  
+  public function deleteBlogsAction(Blog $blogPost) {
+	$this->get('blogger_blog.blog_manager')->delete($blogPost, TRUE);
+  }
+  
+  public function putBlogsAction(Blog $blogPost, Request $request){
+	$self = $this;
+	$request->request->remove('id');
+	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
+		//on success
+		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
+	}, array('method' => 'PUT'));	
+  }
+  
+  /**
+   *  Action for CORS requests
+   * 
+   *  @Route("/blogs/{param}", defaults={"param" = false})
+   */
+  public function optionsBlogsAction($param) {}  
 }

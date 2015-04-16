@@ -15,7 +15,7 @@ class NewBlog extends AbstractType {
 		  ->add('tags')
 		  ->add('title')
 		  ->add('author')
-		  ->add('content')->setMethod('POST');
+		  ->add('content');
   }
   
   public function setDefaultOptions(OptionsResolverInterface $resolver) {
