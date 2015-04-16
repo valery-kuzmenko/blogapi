@@ -1,4 +1,5 @@
 blogger_blog:
+    type: rest
     resource: "@BloggerBlogBundle/Resources/config/routing.yml"
 
 app:

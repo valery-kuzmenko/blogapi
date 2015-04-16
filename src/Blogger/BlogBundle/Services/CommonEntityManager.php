@@ -90,7 +90,7 @@ abstract class CommonEntityManager {
    * 
    * @return Doctrine\ORM\EntityRepository
    */
-  protected function getRepository() {
+  public function getRepository() {
 	if (!$this->repository) {
 	  $this->repository = $this->em->getRepository($this->class);
 	}

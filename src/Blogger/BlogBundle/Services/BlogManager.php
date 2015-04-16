@@ -2,8 +2,6 @@
 
 namespace Blogger\BlogBundle\Services;
 
-use Blogger\BlogBundle\Repository\BlogRepository;
-
 class BlogManager extends CommonEntityManager {
  
  

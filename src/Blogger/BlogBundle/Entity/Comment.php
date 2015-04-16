@@ -63,6 +63,7 @@ class Comment {
   public function __construct() {
 	$this->setCreated(new \DateTime());
 	$this->setUpdated(new \DateTime());
+	$this->setApproved(true);
   }
 
   /**

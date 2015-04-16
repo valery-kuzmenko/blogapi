@@ -4,7 +4,6 @@ namespace Blogger\BlogBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response,
 	Symfony\Component\HttpFoundation\Request,
-	Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
 	FOS\RestBundle\Controller\FOSRestController,
 	FOS\RestBundle\Controller\Annotations\Route,
 	Blogger\BlogBundle\Services\BlogManager,

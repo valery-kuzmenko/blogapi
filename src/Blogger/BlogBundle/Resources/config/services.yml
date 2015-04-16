@@ -15,11 +15,11 @@ services:
             - ['setClass', ['BloggerBlogBundle:Blog']]
             - ['setEntityManager' , [@doctrine.orm.entity_manager]]
     
-    blogger_blog.blog_repository:
-        class: Blogger\BlogBundle\Repository\BlogRepository
-        factory_service: doctrine
-        factory_method: getRepository
-        arguments: [ BloggerBlogBundle:Blog ]
+    blogger_blog.comment_manager:
+        class: Blogger\BlogBundle\Services\CommentManager
+        calls:
+            - ['setClass', [BloggerBlogBundle:Comment]]
+            - ['setEntityManager', [@doctrine.orm.entity_manager]]
     
     blogger_blog.kernel.listener.json_request_transformer:
         class: Blogger\BlogBundle\EventListener\JsonRequestTransformer

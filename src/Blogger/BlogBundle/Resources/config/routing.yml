@@ -1,3 +1,8 @@
 blogs:
     type: rest
     resource: Blogger\BlogBundle\Controller\BlogController
+    
+comments:
+    type: rest
+    parent: blogs
+    resource: Blogger\BlogBundle\Controller\CommentController

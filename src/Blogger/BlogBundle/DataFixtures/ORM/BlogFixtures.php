@@ -31,32 +31,31 @@ class BlogFixtures implements FixtureInterface{
 						  ),
 	);
 	
-	foreach($dataPosts['title'] as $key => $value){
-	  
-	  $blog = new Blog();
-	  $blog->setTitle($dataPosts['title'][$key]);
-	  $blog->setImage($dataPosts['image'][$key]);
-	  $blog->setContent($dataPosts['content'][$key]);
-	  $blog->setAuthor($dataPosts['author'][$key]);
-	  $blog->setTags($dataPosts['tags'][rand(0, 7)] . ',' . $dataPosts['tags'][rand(0, 7)] . ',' . $dataPosts['tags'][rand(0, 7)]);
-	  $blog->setKeywords($dataPosts['keywords'][rand(0, 7)] . ',' . $dataPosts['keywords'][rand(0, 7)] . ',' . $dataPosts['keywords'][rand(0, 7)]);
-	  $blog->setCreated(new \DateTime());
-	  $blog->setUpdated($blog->getCreated());
-	  $blog->setPermalink('permalink' + $key);
-	  
+	foreach($dataPosts['title'] as $key => $value){  
+	  $blog = new Blog();	  
+		$blog->setTitle($dataPosts['title'][$key]);
+		$blog->setImage($dataPosts['image'][$key]);
+		$blog->setContent($dataPosts['content'][$key]);
+		$blog->setAuthor($dataPosts['author'][$key]);
+		$blog->setTags($dataPosts['tags'][rand(0, 7)] . ',' . $dataPosts['tags'][rand(0, 7)] . ',' . $dataPosts['tags'][rand(0, 7)]);
+		$blog->setKeywords($dataPosts['keywords'][rand(0, 7)] . ',' . $dataPosts['keywords'][rand(0, 7)] . ',' . $dataPosts['keywords'][rand(0, 7)]);
+		$blog->setCreated(new \DateTime());
+		$blog->setUpdated($blog->getCreated());
+		$blog->setPermalink('permalink' + $key);
 	  $manager->persist($blog);
 	  
+	  // set comments
 	  $commentsCount = rand(2,5);
 	  for($i=1; $i<=$commentsCount;$i++) {
-		$comment = new Comment();
-		$comment->setComment($dataComents['comment'][rand(0,2)]);
-		$comment->setUser($dataComents['user'][rand(0,2)]);
-		$comment->setBlog($blog);
-		$comment->setApproved(true);
+		$comment = new Comment();		
+		  $comment->setComment($dataComents['comment'][rand(0,2)]);
+		  $comment->setUser($dataComents['user'][rand(0,2)]);
+		  $comment->setBlog($blog);
+		  $comment->setApproved(true);
 		$manager->persist($comment);
 	  };
-	  
 	}
+	
 	$manager->flush();
   }
 }
