@@ -15,8 +15,7 @@ class CommentController extends FOSRestController{
   public function getCommentAction($blogPostId, $commentId){
 	$comment = $this->get('blogger_blog.comment_manager')->getRepository()->findBy(array('id' => $commentId, 'blog' => $blogPostId));
 	
-	if(!$comment) {
-	  
+	if(!$comment) {	  
 	  throw $this->createNotFoundException('This comment is not exist!');
 	}
 	
