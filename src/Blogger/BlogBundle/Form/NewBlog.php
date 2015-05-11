@@ -22,6 +22,7 @@ class NewBlog extends AbstractType {
 	$resolver->setDefaults(array(
 		'data_class' => 'Blogger\BlogBundle\Entity\Blog',
 		'csrf_protection'   => false,
+		'allow_extra_fields' => true
 	));
   }
   

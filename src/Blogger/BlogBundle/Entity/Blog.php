@@ -34,7 +34,7 @@ class Blog {
   protected $title;
 
   /**
-   * @ORM\Column(type="string", length=50)
+   * @ORM\Column(type="string", length=50, nullable=true)
    * @Type("string")
    * @Expose
    */
@@ -61,7 +61,7 @@ class Blog {
   protected $keywords;
 
   /**
-   * @ORM\Column(type="string", length=50)
+   * @ORM\Column(type="string", length=50,  nullable=true)
    */
   protected $image;
 

@@ -40,7 +40,6 @@ class BlogController extends MainController {
   
   public function putBlogsAction(Blog $blogPost, Request $request){
 	$self = $this;
-	$request->request->remove('id');
 	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
 		//on success
 		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
