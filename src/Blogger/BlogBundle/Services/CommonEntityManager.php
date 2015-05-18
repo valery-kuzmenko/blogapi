@@ -84,6 +84,15 @@ abstract class CommonEntityManager {
   public function setEntityManager(\Doctrine\ORM\EntityManager $entityManager) {
 	$this->em = $entityManager;
   }
+
+  /**
+   * Get entity manager.
+   * 
+   * @return \Doctrine\ORM\EntityManager $entityManager
+   */
+  public function getEntityManager() {
+	return $this->em;
+  }
   
   /**
    * Returns the repository

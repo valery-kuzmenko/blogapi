@@ -45,7 +45,7 @@ class BlogFixtures implements FixtureInterface{
 	  $manager->persist($blog);
 	  
 	  // set comments
-	  $commentsCount = rand(2,5);
+	  $commentsCount = rand(15,20);
 	  for($i=1; $i<=$commentsCount;$i++) {
 		$comment = new Comment();		
 		  $comment->setComment($dataComents['comment'][rand(0,2)]);

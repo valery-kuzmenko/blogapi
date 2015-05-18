@@ -12,7 +12,8 @@ class JsonRequestTransformer {
 	}
 
 	$request = $event->getRequest();
-	if($request->getRequestFormat() !== 'json') {
+
+	if($request->getRequestFormat() !== 'json' || !in_array($request->getMethod(), array('POST', 'PUT'))) {
 	  return;
 	}
 
