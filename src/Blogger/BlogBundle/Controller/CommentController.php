@@ -6,9 +6,12 @@ use Symfony\Component\HttpFoundation\Response,
 	Symfony\Component\HttpFoundation\Request,
 	FOS\RestBundle\Controller\FOSRestController,
 	FOS\RestBundle\Controller\Annotations\Route,
-	Doctrine\ORM\Tools\Pagination\Paginator;
+	Doctrine\ORM\Tools\Pagination\Paginator,
+	Blogger\BlogBundle\Form\NewComment,
+	Blogger\BlogBundle\Entity\Blog,
+	Blogger\BlogBundle\Entity\Comment;
 	
-class CommentController extends FOSRestController{
+class CommentController extends MainController{
   public function getCommentsAction($blogPostId, Request $request) {
 	$em =  $this->get('blogger_blog.comment_manager')->getEntityManager();
 	
@@ -44,7 +47,20 @@ class CommentController extends FOSRestController{
 	return $comment;
   }
   
-  public function postCommentsAction($blogPostId) {
+  public function postCommentsAction(Blog $blog, Request $request) {
+	$comment = new Comment();
+	$self = $this;
+	$comment->setBlog($blog);
 	
+	return $this->processForm($request, new NewComment(), $comment, 200, function() use ($self, $comment) {
+	  $self->get('blogger_blog.blog_manager')->save($comment, TRUE);
+	});
   }
+  
+   /**
+   *  Action for CORS requests
+   * 
+   *  @Route("/blogs/{param}/comments", defaults={"param" = false})
+   */
+  public function optionsBlogsAction($param) {}  
 }
