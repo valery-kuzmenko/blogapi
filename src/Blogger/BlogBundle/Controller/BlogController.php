@@ -15,7 +15,7 @@ class BlogController extends MainController {
   public function getBlogsAction() {
 	return $this->get('blogger_blog.blog_manager')->all();
   }
-  
+
   public function getBlogAction($id) {
 	$blog = $this->get('blogger_blog.blog_manager')->get($id);
 
@@ -29,28 +29,31 @@ class BlogController extends MainController {
   public function postBlogsAction(Request $request) {
 	$blogPost = new Blog();
 	$self = $this;
-	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
+	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost) {
 		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
-	});
+	  });
   }
-  
+
   public function deleteBlogsAction(Blog $blogPost) {
 	$this->get('blogger_blog.blog_manager')->delete($blogPost, TRUE);
   }
-  
-  public function putBlogsAction(Blog $blogPost, Request $request){
+
+  public function putBlogsAction(Blog $blogPost, Request $request) {
 	$self = $this;
 
-	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost){
+	return $this->processForm($request, new NewBlog(), $blogPost, 200, function() use ($self, $blogPost) {
 		//on success
 		$self->get('blogger_blog.blog_manager')->save($blogPost, TRUE);
-	}, array('method' => 'PUT'));	
+	  }, array('method' => 'PUT'));
   }
-  
+
   /**
    *  Action for CORS requests
    * 
    *  @Route("/blogs/{param}", defaults={"param" = false})
    */
-  public function optionsBlogsAction($param) {}  
+  public function optionsBlogsAction($param) {
+	
+  }
+
 }

@@ -6,3 +6,7 @@ comments:
     type: rest
     parent: blogs
     resource: Blogger\BlogBundle\Controller\CommentController
+
+translation:
+    type: rest
+    resource: Blogger\BlogBundle\Controller\TranslateController 
