@@ -55,7 +55,7 @@ DirectoryIndex app_dev.php
     </IfModule>
 </IfModule>
 
-Header add Access-Control-Allow-Origin: "http://bb.home"
+Header add Access-Control-Allow-Origin: "*"
 #Header add Access-Control-Allow-Origin: "http://www.bb.home"
 Header add Access-Control-Allow-Headers: "origin, x-requested-with, content-type"
 Header add Access-Control-Allow-Methods: "PUT, GET, POST, DELETE, OPTIONS, LINK"

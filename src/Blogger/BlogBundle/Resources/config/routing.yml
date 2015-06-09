@@ -9,4 +9,4 @@ comments:
 
 translation:
     type: rest
-    resource: Blogger\BlogBundle\Controller\TranslateController 
+    resource: Blogger\BlogBundle\Controller\TranslateController

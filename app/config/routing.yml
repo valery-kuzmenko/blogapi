@@ -1,8 +1,7 @@
-blogger_user:
-    resource: "@BloggerUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 blogger_blog:
     type: rest
     resource: "@BloggerBlogBundle/Resources/config/routing.yml"
 
+blogger_user:
+    type: rest
+    resource: "@BloggerUserBundle/Resources/config/routing.yml"

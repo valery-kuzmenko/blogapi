@@ -12,7 +12,8 @@ framework:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
-    csrf_protection: ~
+    csrf_protection: 
+        enabled: false
     validation:      {enabled: true, enable_annotations: true }
     templating:
         engines: ['twig']
@@ -108,5 +109,8 @@ sensio_framework_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: BloggerUserBundle:User
+    user_class: 'Blogger\UserBundle\Entity\User'
+    registration:
+        form:
+            type: blogger_user_registration
 

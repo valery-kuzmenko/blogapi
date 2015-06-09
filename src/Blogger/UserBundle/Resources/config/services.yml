@@ -1,1 +1,6 @@
-
+services:
+    blogger_user.registration.form.type:
+        class: Blogger\UserBundle\Form\Type\RegistrationFormType
+        arguments: ['Blogger\UserBundle\Entity\User']
+        tags:
+            - {name: form.type, alias: blogger_user_registration}
