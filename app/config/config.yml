@@ -113,4 +113,5 @@ fos_user:
     registration:
         form:
             type: blogger_user_registration
+            name: ''
 
