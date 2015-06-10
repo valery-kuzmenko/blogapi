@@ -9,18 +9,19 @@ use FOS\RestBundle\Controller\FOSRestController,
 	Symfony\Component\HttpFoundation\Response;
 
 class UserController extends FOSRestController {
-  public function postUserAction(Request $request) {       
-		$form = $this->container->get('fos_user.registration.form');
-        $formHandler = $this->container->get('fos_user.registration.form.handler');
-			
-        $process = $formHandler->process(false);
-        
-		if ($process) {
-            $user = $form->getData();
 
-            return $user;
-		} else {
-		  return $form->getErrors();
-		}
+  public function postUserAction(Request $request) {
+	$form = $this->container->get('fos_user.registration.form');
+	$formHandler = $this->container->get('fos_user.registration.form.handler');
+
+	$process = $formHandler->process(false);
+	if ($process) {
+	  $user = $form->getData();
+
+	  return $user;
+	} else {
+
+	  return $this->view($form, 400);
+	}
   }
 }
