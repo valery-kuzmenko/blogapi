@@ -24,7 +24,11 @@ class TranslateController extends MainController {
 		'directive.comments.title' => 'Comments',
 		'directive.comments.name' => 'Name',
 		'directive.comments.comment' => 'Comment',
-		'directive.comments.submit' => 'submit',
+		'form.submit' => 'Submit',
+		'form.name' => 'Enter Your Name',
+		'form.email' => 'Enter Your Email',
+		'form.password' => 'Enter Your Password',
+		'form.error.empty' => 'This field is required.',
 		'pagination.next' => 'Next',
 		'pagination.last' => 'Last',
 		'pagination.first' => 'First',
@@ -40,7 +44,10 @@ class TranslateController extends MainController {
 		'admin.addpost.posttitle' => 'Post Title',	
 		'admin.addpost.content' => 'Content',	
 		'admin.addpost.tags' => 'Tags',	
-		'admin.addpost.keywords' => 'Keywords',	
+		'admin.addpost.keywords' => 'Keywords',
+		'public.registration.success' => 'Congratulations! You have successful registered!',
+		'public.registration.error' => 'Your data is incorrect!',
+		
 	);
 
 	$arrTranslates['ru'] = array(
@@ -53,7 +60,11 @@ class TranslateController extends MainController {
 		'directive.comments.title' => 'Комментарии',
 		'directive.comments.name' => 'Имя',
 		'directive.comments.comment' => 'Комментарий',
-		'directive.comments.submit' => 'Отправить',
+		'form.submit' => 'Отправить',
+		'form.name' => 'Имя',
+		'form.email' => 'Email',
+		'form.password' => 'Пароль',
+		'form.error.empty' => 'Поле обязательно для заполнения',
 		'pagination.next' => 'След.',
 		'pagination.last' => 'Посл.',
 		'pagination.first' => 'Перв.',
@@ -69,7 +80,9 @@ class TranslateController extends MainController {
 		'admin.addpost.posttitle' => 'Заголовок',	
 		'admin.addpost.content' => 'Котент',	
 		'admin.addpost.tags' => 'Тэги',	
-		'admin.addpost.keywords' => 'Ключевы слова',			
+		'admin.addpost.keywords' => 'Ключевы слова',	
+		'public.registration.success' => 'Вы успешно зарегистрированы!',
+		'public.registration.error' => 'Данные введены неверно!',
 	);
 	
 	return $arrTranslates[$lang];
