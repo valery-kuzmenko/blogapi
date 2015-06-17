@@ -3,13 +3,16 @@
 namespace Blogger\UserBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController,
-	FOS\RestBundle\View\View,
 	FOS\RestBundle\Controller\Annotations\Route,
+	FOS\RestBundle\Controller\Annotations\View,
 	Symfony\Component\HttpFoundation\Request,
 	Symfony\Component\HttpFoundation\Response;
 
 class UserController extends FOSRestController {
-
+  
+  /**
+   * @View(serializerGroups={"user_detail"})
+   */
   public function postUserAction(Request $request) {
 	$form = $this->container->get('fos_user.registration.form');
 	$formHandler = $this->container->get('fos_user.registration.form.handler');
@@ -17,20 +20,22 @@ class UserController extends FOSRestController {
 	$process = $formHandler->process(false);
 	
 	if ($process) {
-	  $user = (array) $form->getData();
-
-	  return $this->view(array('code' => '200', 'success' => TRUE, 'data' => $user), 200);
+	  $user = $form->getData();
+	  
+	  return array('code' => '200', 'success' => TRUE, 'data' => $user);
 	} else {
 
-	  return $this->view($form, 400);
+	  return $form;
 	}
   }
-
+  /**
+   * @View(serializerGroups={"user_list"})
+   */
   public function getUsersAction(){
 	$userManager = $this->get('fos_user.user_manager');
 	$users = $userManager->findUsers();
 	
-	return $this->view($users);
+	return $users;
   }
   
   /**

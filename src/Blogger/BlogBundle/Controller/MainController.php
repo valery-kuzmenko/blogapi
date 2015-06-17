@@ -27,7 +27,7 @@ class MainController extends FOSRestController {
 		$successCallback();
 	  } 
 
-	  return new Response(json_encode(array('code' => $sucessCode, 'success' => true)), $sucessCode);	  
+	  return new Response(json_encode(array('code' => $sucessCode, 'success' => TRUE)), $sucessCode);	  
 	} else {
 	  return $this->view($form, 400);
 	}

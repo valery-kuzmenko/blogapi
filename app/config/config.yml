@@ -115,3 +115,9 @@ fos_user:
             type: blogger_user_registration
             name: ''
 
+jms_serializer:
+    metadata:
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/config/serializer/FOSUserBundle"

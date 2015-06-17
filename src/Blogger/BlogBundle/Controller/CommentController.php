@@ -31,7 +31,7 @@ class CommentController extends MainController{
 	
 	$view = $this
 	  ->view($comments, 200)
-	  ->setHeader('Access-Control-Expose-Headers', 'blogger-pages-count')
+	  ->setHeader('Access-Control-Expose-Headers', 'blogger-pages-count') // to angular see this header
 	  ->setHeader('blogger-pages-count' , ceil(count($paginator)/$rpp), 'blogger-comments-count');
 	
 	return $this->handleView($view);
